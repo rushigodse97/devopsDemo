@@ -7,5 +7,10 @@ pipeline {
                 echo 'Hello World'
             }
         }
+        stage('Compile') {
+                    steps {
+                        bat 'mvn compile'
+                    }
+        }
     }
 }
