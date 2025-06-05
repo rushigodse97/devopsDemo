@@ -6,15 +6,18 @@ pipeline {
     }
 
     stages {
-        stage('Hello') {
+        stage('Compile') {
             steps {
-                echo 'Hello World'
+                bat 'mvn compile'
             }
         }
-        stage('Compile') {
-                    steps {
-                        bat 'mvn compile'
-                    }
+        stage('Test') {
+             steps {
+                  bat 'mvn clean test'
+             }
         }
+
+
+
     }
 }
