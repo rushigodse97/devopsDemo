@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Image') {
                steps {
-                     bat 'docker build -t devopsdemo.jar'
+                     bat 'docker build -t devopsdemo.jar .'
                }
         }
         stage('Run') {
