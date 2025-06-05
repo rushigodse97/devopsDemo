@@ -9,6 +9,6 @@ public class Hello {
 
     @GetMapping("/hello")
     public String callhello(){
-        return "hello to everyone";
+        return "hello to dev";
     }
 }
