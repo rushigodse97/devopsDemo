@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  springboot-app:
+    image: devops-demo-app:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: devops-demo-container
+    ports:
+      - "8344:9421"
+    restart: unless-stopped
