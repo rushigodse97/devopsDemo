@@ -21,17 +21,23 @@ pipeline {
                     bat 'mvn clean package'
               }
         }
-        stage('Image') {
-               steps {
-                     bat 'docker build -t devopsdemo.jar .'
-               }
-        }
-        stage('Run') {
-               steps {
-                     bat 'docker run -p 8344:9421 devopsdemo.jar'
-               }
+        stage('Build Docker Image') {
+                steps {
+                    sh 'docker build -t devops-demo-app:latest .'
+                }
+            }
+
+        stage('Run with Docker Compose') {
+                steps {
+                    sh 'docker-compose down || true'   // Stop previous if running
+                    sh 'docker-compose up -d --build'
+                }
+            }
         }
 
-
-    }
+        post {
+            always {
+                sh 'docker ps -a' // Optional: Show running containers
+            }
+        }
 }
