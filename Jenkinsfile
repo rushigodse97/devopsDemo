@@ -23,21 +23,21 @@ pipeline {
         }
         stage('Build Docker Image') {
                 steps {
-                    sh 'docker build -t devops-demo-app:latest .'
+                    bat 'docker build -t devops-demo-app:latest .'
                 }
             }
 
         stage('Run with Docker Compose') {
                 steps {
-                    sh 'docker-compose down || true'   // Stop previous if running
-                    sh 'docker-compose up -d --build'
+                    bat 'docker-compose down || true'   // Stop previous if running
+                    bat 'docker-compose up -d --build'
                 }
             }
         }
 
         post {
             always {
-                sh 'docker ps -a' // Optional: Show running containers
+                bat 'docker ps -a' // Optional: Show running containers
             }
         }
 }
